@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ventaSchema = new mongoose.Schema({
+const internadoSchema = new mongoose.Schema({
   nombreInternado: {
     type: String,
     required: true
