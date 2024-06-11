@@ -1,31 +1,15 @@
 const mongoose = require('mongoose');
 const ventaSchema = new mongoose.Schema({
-  idVenta:{
+  nombreInternado: {
     type: String,
     required: true
   },
-  idProducto: {
+  numeroHabitacion: {
     type: String,
     required: true
   },
-  username: {
-    type: String,
-    required: true
-  },
-  cantidad: {
+  capacidadHabitacion: {
     type: Number,
-    required: true
-  },
-  precio: {
-    type: Number,
-    required: true
-  },
-  total: {
-    type: Number,
-    required: false
-  },
-  status:{
-    type: String,
     required: true
   },
   createdAt: {
@@ -33,10 +17,4 @@ const ventaSchema = new mongoose.Schema({
     default: Date.now
   }
   });
-
-  ventaSchema.pre('save', function(next) {
-    this.total = this.cantidad * this.precio;
-    next();
-  });
-
-  module.exports = {ventaSchema}
+  module.exports = {internadoSchema}
