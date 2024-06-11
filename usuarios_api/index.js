@@ -23,9 +23,10 @@ app.post('/usuario', async(req, res)=>{
     const name = req.body.name;
     const lastname = req.body.lastname;
     const gender = req.body.gender;
+    const habitacion = req.body.habitacion;
     const status = req.body.status;
     
-    const person = new usuarioModel({ codeStudent,name,lastname,gender,status});
+    const person = new usuarioModel({ codeStudent,name,lastname,gender,status, habitacion});
 
     const data = await person.save();
     return res.status(201).json(data);
