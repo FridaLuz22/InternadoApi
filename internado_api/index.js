@@ -1,5 +1,5 @@
 const express = require("express")
-const personService = require("./services/userService");
+const userService = require("./services/userService");
 const uri = 'mongodb+srv://carlosflores:mongodbcf@cluster0.rzotvjb.mongodb.net'
 
 const mongoose = require('mongoose');
@@ -8,7 +8,7 @@ const app = express()
 app.use( express.json() )
 const port = 8080
 const { internadoModel } = require('./models');
-app.get('/', (req, res) => { res.send("Te vendemos!!"); })
+app.get('/', (req, res) => { res.send("Registrando internadoo!!"); })
 
 app.get('/internado', async(req, res)=>{
   const internado = await internadoModel.find({});
