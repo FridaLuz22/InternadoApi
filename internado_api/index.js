@@ -36,7 +36,7 @@ app.post('/internado', async(req, res)=>{
     return res.status(201).json(data);
   } catch (error) {
     console.log('Error', error);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Usuario no Registrado' });
   }
 });
 
