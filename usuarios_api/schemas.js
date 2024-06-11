@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    habitacion:{
+      type: Number,
+      required: true
+    },
     Status: {
       type: String,
       required: true

@@ -1,5 +1,5 @@
 const express = require("express")
-const personService = require("./services/personService");
+const personService = require("./services/userService");
 const uri = 'mongodb+srv://carlosflores:mongodbcf@cluster0.rzotvjb.mongodb.net'
 
 const mongoose = require('mongoose');
@@ -7,32 +7,32 @@ mongoose.connect(uri);
 const app = express()
 app.use( express.json() )
 const port = 8080
-const { ventaModel } = require('./models');
+const { internadoModel } = require('./models');
 app.get('/', (req, res) => { res.send("Te vendemos!!"); })
 
-app.get('/venta', async(req, res)=>{
-  const venta = await ventaModel.find({});
-  res.json( venta );
+app.get('/internado', async(req, res)=>{
+  const internado = await internadoModel.find({});
+  res.json( internado );
 });
-app.get('/venta/:username', async(req, res)=>{
-  const venta = await ventaModel.find({username:req.params.username});
+app.get('/internado/:numeroHabitacion', async(req, res)=>{
+  const internado = await internadoModel.find({numeroHabitacion:req.params.numeroHabitacion});
   try {
-    res.json( venta[0] );
+    res.json( internado[0] );
   } catch (error) {
     console.log('Error', error);
     return res.status(500).json({ message: 'Internal server error' });
   }
 });
-app.post('/venta', async(req, res)=>{
+app.post('/internado', async(req, res)=>{
   try {
-    const {idVenta, idProducto, username, cantidad, precio, status} = req.body;
+    const {nombreInternado, numeroHabitacion, capacidadHabitacion, codeStudent} = req.body;
 
-    let userVenta=null;
-    userVenta = await personService.get(username);
-    if(! userVenta )  throw ("USERNAME NO REGISTRADO");
+    let userinternado=null;
+    userinternado = await userService.get(codeStudent);
+    if(! userinternado )  throw ("Usuario no Registrado");
 
-    const venta = new ventaModel({ idVenta, idProducto, username, cantidad, precio, status});
-    const data = await venta.save();
+    const internado = new internadoModel({ nombreInternado, numeroHabitacion, capacidadHabitacion, codeStudent});
+    const data = await internado.save();
     return res.status(201).json(data);
   } catch (error) {
     console.log('Error', error);

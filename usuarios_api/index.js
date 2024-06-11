@@ -6,24 +6,26 @@ mongoose.connect(uri);
 const app = express()
 app.use( express.json() )
 const port = 8080
-const { loginModel } = require('./models');
+const { usuarioModel } = require('./models');
 app.get('/', (req, res) => { res.send("I'm loged!!"); })
 
-app.get('/login', async(req, res)=>{
-  const login = await loginModel.find({});
-  res.json( login );
+app.get('/usuario', async(req, res)=>{
+  const usuario = await usuarioModel.find({});
+  res.json( usuario );
 });
-app.get('/login/:username', async(req, res)=>{
-  const person = await loginModel.find({username:req.params.username});
+app.get('/usuario/:codeStudent', async(req, res)=>{
+  const person = await usuarioModel.find({codeStudent:req.params.codeStudent});
   res.json( person );
 });
-app.post('/login', async(req, res)=>{
+app.post('/usuario', async(req, res)=>{
   try {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
+    const codeStudent = req.body.codeStudent;
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const gender = req.body.gender;
+    const status = req.body.status;
     
-    const person = new loginModel({ username,email,password});
+    const person = new usuarioModel({ codeStudent,name,lastname,gender,status});
 
     const data = await person.save();
     return res.status(201).json(data);
