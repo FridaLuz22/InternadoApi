@@ -1,14 +1,22 @@
 const mongoose = require('mongoose');
-const loginSchema = new mongoose.Schema({
-    username: {
+const userSchema = new mongoose.Schema({
+    codeStudent: {
       type: String,
       required: true
     },
-    email: {
+    name:{
       type: String,
       required: true
     },
-    password: {
+    lastname:{
+      type: String,
+      required: true
+    },
+    gender:{
+      type: String,
+      required: true
+    },
+    Status: {
       type: String,
       required: true
     },
@@ -18,4 +26,4 @@ const loginSchema = new mongoose.Schema({
     }
   });
 
-  module.exports = {loginSchema}
+  module.exports = {userSchema}
