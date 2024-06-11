@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const userSchema = new mongoose.Schema({
+const usuarioSchema = new mongoose.Schema({
     codeStudent: {
       type: String,
       required: true
@@ -29,5 +29,4 @@ const userSchema = new mongoose.Schema({
       default: Date.now
     }
   });
-
-  module.exports = {userSchema}
+  module.exports = {usuarioSchema}

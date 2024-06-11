@@ -7,7 +7,7 @@ const app = express()
 app.use( express.json() )
 const port = 8080
 const { usuarioModel } = require('./models');
-app.get('/', (req, res) => { res.send("I'm loged!!"); })
+app.get('/', (req, res) => { res.send("Usuarios"); })
 
 app.get('/usuario', async(req, res)=>{
   const usuario = await usuarioModel.find({});
